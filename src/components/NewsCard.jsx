@@ -1,15 +1,17 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai"; // React Icons for stars
 import { FaEye } from "react-icons/fa"; // React Icon for views
+import { Link } from "react-router-dom";
 
-const singleNewsCard = ({ singleNews }) => {
+const NewsCard = ({ singleNews }) => {
+  // console.log(singleNews)
   return (
     <div className="card bg-white shadow-lg rounded-lg border p-4 max-w-full mx-auto">
       {/* Thumbnail Image */}
       <img
         src={singleNews.thumbnail_url}
         alt="Thumbnail"
-        className="rounded-t-lg w-full h-80 object-cover"
+        className="rounded-t-lg w-full h-80 cover "
       />
       
       {/* Card Content */}
@@ -32,14 +34,17 @@ const singleNewsCard = ({ singleNews }) => {
         </div>
         
         {/* Details */}
+        <div>
         <p className="text-gray-700 text-sm mt-4">
           {singleNews.details.length > 100
             ? `${singleNews.details.substring(0, 100)}...`
             : singleNews.details}
         </p>
+        <Link to={`/news/details/${singleNews._id}`} className="text-orange-600"> Read More</Link>
+        </div>
         
         {/* Read More Button */}
-        <button className="btn btn-primary btn-sm mt-4">Read More</button>
+        {/* <button className="">Read More</button> */}
         
         {/* Ratings and Views */}
         <div className="flex justify-between items-center mt-4">
@@ -60,4 +65,4 @@ const singleNewsCard = ({ singleNews }) => {
   );
 };
 
-export default singleNewsCard;
+export default NewsCard;
